@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+
+    <div id='app' class="container">
+        <h1>{{mensaje}}</h1>
+        <input type="text" class="form-control" v-model='nuevasTareas' @keyup.enter="agregarTarea">
+        <button class="btn btn-primary" @click="agregarTarea">Agregar</button>
+
+        <div class="mt-3" v-for="(tarea,index) of tareas">
+            <div class="d-flex justify-content-between align-items-center">
+            
+                <!-- EL PRIMER CASO ES SI ES TRUE Y EL SEGUNDO SI ES FALSE -->
+                <div role="alert" :class=" ['alert', tarea.estado ? 'alert-success' : 'alert-danger'] ">
+                    {{index}} - {{tarea.nombre}} - {{tarea.estado}}
+                </div>
+              
+                <div>
+                    <button class="btn btn-success btn-sm " @click="editarTarea(index)">ok</button>
+                    <button class="btn btn-primary btn-sm " @click="eliminarTarea(index)">x</button>
+                </div>
+                
+             </div>
+        </div>
+       
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="gym.js"></script>
+</body>
+</html>
